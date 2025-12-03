@@ -392,15 +392,15 @@ impl KeyInputState {
 
     fn dispatch_typeable(&mut self, text: &mut String, result: &mut Vec<Event>) {
         for character in text.chars() {
-            let shifted = self.modifiers.contains(Modifiers::SHIFT);
-            if is_shifted_character(character) && !shifted {
-                // dispatch left shift down
-                result.push(self.dispatch_keydown('\u{E008}').into());
-            }
-            if !is_shifted_character(character) && shifted {
-                // dispatch left shift up
-                result.push(self.dispatch_keyup('\u{E008}').unwrap().into());
-            }
+            // let shifted = self.modifiers.contains(Modifiers::SHIFT);
+            // if is_shifted_character(character) && !shifted {
+            //     // dispatch left shift down
+            //     result.push(self.dispatch_keydown('\u{E008}').into());
+            // }
+            // if !is_shifted_character(character) && shifted {
+            //     // dispatch left shift up
+            //     result.push(self.dispatch_keyup('\u{E008}').unwrap().into());
+            // }
             result.push(self.dispatch_keydown(character).into());
             result.push(self.dispatch_keyup(character).unwrap().into());
         }
